@@ -1,0 +1,229 @@
+/* styles.css */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #f3f4f6;
+  color: #333;
+}
+
+.container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 250px 1fr;
+  height: 100vh;
+  grid-template-areas:
+    "left main"
+    "left main"
+    "left bottom";
+}
+
+.left-panel {
+  grid-area: left;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  font-size: 1.6em;
+  font-weight: bold;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.logo span {
+  margin-left: 10px;
+}
+
+.search label {
+  font-size: 0.9em;
+  margin-bottom: 10px;
+  display: block;
+  text-align: center;
+}
+
+.search input {
+  width: -webkit-fill-available;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+
+.image-list {
+  margin-top: 20px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+}
+
+.image-item {
+  background: rgba(255, 255, 255, 0.1);
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.image-item:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+.more-button, .process-button {
+  background: #aa9bd3;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin: auto;
+}
+
+.more-button:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.main-panel {
+  grid-area: main;
+  background: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.result {
+  border: 4px dashed #667eea;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  aspect-ratio: 16 / 9;
+}
+
+.result-image {
+  font-size: 1.2em;
+  color: #764ba2;
+}
+
+.bottom-panel {
+  display: flex;
+  /* Ordena los elementos en una fila */
+  flex-direction: row;
+  /* Asegura que estén alineados horizontalmente */
+  justify-content: space-around;
+  /* Espacia los elementos uniformemente */
+  align-items: center;
+  /* Alinea verticalmente los elementos */
+  padding: 20px;
+}
+
+.bottom-panel .option {
+  flex-direction: column;
+  /* Mantén cada opción con texto arriba y elementos abajo */
+  align-items: center;
+  /* Centra los contenidos de cada opción */
+}
+
+.bottom-panel .option-items-container {
+  display: flex;
+  /* Organiza los items en fila */
+  justify-content: center;
+  /* Centra los items horizontalmente */
+}
+
+.bottom-panel .option-item {
+  margin: 0px 10px 10px 10px;
+  /* Espaciado horizontal entre los items */
+}
+
+.background-options,
+.person-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.option label {
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}
+
+.option-item {
+  width: 120px;
+  aspect-ratio: 16 / 9;
+  border: 2px solid #764ba2;
+  background: white;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  cursor: pointer;
+  transition: all 0.3s;
+  overflow: hidden;
+  /* Asegúrate de que la imagen no se salga */
+}
+
+.option-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Ajusta la imagen al contenedor */
+}
+
+.option-item:hover, .process-button:hover {
+  background: #667eea;
+  color: white;
+  transform: scale(1.1);
+}
+
+.background-options .option-item {
+  width: 160px;
+}
+
+/* Fondo azul transparente como capa intermedia */
+.loading-overlay {
+  position: absolute;
+  inset: 0; /* Ocupa todo el contenedor */
+  background: rgba(0, 0, 255, 0.3); /* Fondo azul transparente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10; /* Sobre la imagen original */
+  border-radius: 5px;
+}
+
+/* Indicador de carga */
+.loading-indicator {
+  font-size: 1em;
+  animation: spin 1.5s infinite ease-in-out;
+}
+
+/* Animación de giro */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Asegurar que los option-item tengan posición relativa */
+.option-item {
+  position: relative;
+  overflow: hidden;
+}

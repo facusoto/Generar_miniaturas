@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generar miniaturas!</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <!-- Panel lateral izquierdo -->
+    <aside class="left-panel">
+      <div class="logo">🌟<span>Generar miniaturas!</span></div>
+      <div class="search">
+        <label for="search-input">Selecciona el programa:</label>
+        <input id="search-input" type="text" placeholder="Escribí algo...">
+      </div>
+      <div class="image-list">
+        <div class="image-item">🌄 Imagen 1</div>
+        <div class="image-item">🌅 Imagen 2</div>
+        <div class="image-item">🌌 Imagen 3</div>
+        <div class="image-item">🏞️ Imagen 4</div>
+        <div class="image-item">🌇 Imagen 5</div>
+        <button class="more-button">Ver más ▼</button>
+      </div>
+    </aside>
+
+    <!-- Panel central -->
+    <main class="main-panel">
+      <h1>✨ Resultado Final ✨</h1>
+      <div class="result">
+        <div class="result-image">¡Selecciona las imagenes para procesarlas!</div>
+      </div>
+    </main>
+
+    <!-- Panel inferior -->
+    <footer class="bottom-panel">
+      <div class="background-options">
+        <label>Fondo</label>
+        <div class="option-item">➕</div>
+      </div>
+      <div class="person-options">
+        <label>Personas Recortadas</label>
+        <div class="option-items-container">
+          <div class="option-item" data-index="1">👤</div>
+          <div class="option-item" data-index="2">👤</div>
+          <div class="option-item" data-index="3">👤</div>
+          <div class="option-item" data-index="4">👤</div>
+          <div class="option-item" data-index="5">👤</div>
+        </div>
+        <input type="file" name="image" id="imageInput" accept="image/*" hidden>
+        <button id="processButton" class="process-button">Procesar Imágenes</button>
+      </div>
+    </footer>
+  </div>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
