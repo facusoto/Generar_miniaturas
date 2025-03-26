@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Manejar el clic en el botón de procesamiento
   processButton.addEventListener("click", () => {
-    processSectionImages(personsSection, "/remove-bg");
+    processSectionImages(personsSection, "/process-people");
     processSectionImages(backgroundSection, "/process-background");
   });
 

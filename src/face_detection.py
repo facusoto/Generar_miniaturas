@@ -1,10 +1,10 @@
 import os
-import math
-import cv2
-import mediapipe as mp
 import numpy as np
-from PIL import Image
+import mediapipe as mp
+import math
 import logging
+from .config import WIDTH, HEIGHT
+from PIL import Image
 
 # Configuración de Mediapipe
 def setup_mediapipe():
@@ -35,7 +35,7 @@ def process_image(image_pillow, face_mesh):
     return (image_pillow, original_landmarks), (flipped_image, flipped_landmarks), (h, w)
 
 # Detectar orientación considerando inclinación
-def detect_face_orientation(landmarks, image_width, image_height, num_images, current_index):
+def detect_face_orientation(landmarks, num_images, current_index):
     # Puntos de referencia
     forehead = landmarks[10]
     chin = landmarks[200]
@@ -117,14 +117,13 @@ def position_images_on_canvas(image_pillow, landmarks, canvas, canvas_subdivisio
 # Función principal
 def position_face_on_canvas(image_pillow, people_amount):
     face_mesh = setup_mediapipe()
-    canvas_width, canvas_height = 1280, 720
-    canvas = Image.new("RGBA", (canvas_width, canvas_height), (255, 255, 255, 0))
+    canvas = Image.new("RGBA", (WIDTH, HEIGHT), (255, 255, 255, 0))
     subdivisions = people_amount + 1
 
     original_data, flipped_data, (h, w) = process_image(image_pillow, face_mesh)
 
     for i in range(1, people_amount + 1):
-        target_eye_center = ((canvas_width // subdivisions) * i, canvas_height // 3)
+        target_eye_center = ((WIDTH // subdivisions) * i, HEIGHT // 3)
         best_image, best_landmarks = detect_best_orientation(original_data, flipped_data, w, h, i, people_amount)
 
         position_images_on_canvas(best_image, best_landmarks, canvas, subdivisions, i, target_eye_center)
