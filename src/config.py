@@ -15,3 +15,4 @@ FONT_PATH = INPUT_PATH / "graficos" / "sequel-100-black-65.ttf"
 
 # Tamaño definido para las imagenes
 WIDTH, HEIGHT = 1280, 720
+EYE_POSITION_Y = 240

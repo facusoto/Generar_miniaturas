@@ -1,7 +1,9 @@
 from image_processing import process_background as pb
 from image_processing import remove_bg, remove_extra_canvas
-from flask import Flask, request, send_file, render_template
+from face_detection import position_face_on_canvas
+from flask import Flask, request, send_file, render_template, jsonify
 from io import BytesIO
+import base64
 
 app = Flask(__name__)
 
@@ -38,10 +40,19 @@ def process_people():
     # Remover el fondo y recortar el canvas a su mínimo
     removed_background = remove_bg(input_image)
     removed_canvas = remove_extra_canvas(removed_background)
+    image_base64 = base64.b64encode(removed_canvas.getvalue()).decode('utf-8')
+
+    image_attributes = position_face_on_canvas(removed_canvas, 1)
+
+    # Construir la respuesta JSON con imagen y datos
+    response = {
+        "image": image_base64,  # Imagen en base64 para enviar en JSON
+        "new_size": image_attributes[0],  # (width, height)
+        "offset": image_attributes[1]     # (offset_x, offset_y)
+    }
 
     print("Ya se procesó la imagen y se recortó el canvas al mínimo posible")
-    return send_file(removed_canvas, mimetype='image/png')
-
+    return jsonify(response)
 
 if __name__ == '__main__':
     app.run(debug=True)
